@@ -26,4 +26,4 @@ Route::group(['middleware' => 'auth'], function () {
   Route::post('/daftar-beasiswa', 'PageController@postBeasiswa')->name('postbeasiswa');
   Route::get('/dashboard', 'PageController@getDashboard')->name('dashboard');
 });
-abort(404);
+//abort(404);
