@@ -26,6 +26,8 @@
 				<li><a href="/">Home</a></li>
 				@if (Auth::guest())
 					<li><a href="/register">Register</a>
+				@elseif (Auth::user()->isAdmin(1))
+					<li class="active"><a href="/dashboard">Dashboard</a>
 				@else
 					<li class="active"><a href="/daftar-beasiswa">Daftar Beasiswa</a>
 				@endif

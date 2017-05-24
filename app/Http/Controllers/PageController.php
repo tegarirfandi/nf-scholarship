@@ -56,6 +56,12 @@ class PageController extends Controller
       return redirect()->back();
     }
 
+    public function getDashboard()
+    {
+        $beasiswas = Beasiswa::all();
+        return view('dashboard', compact ('beasiswas'));
+    }
+
 
     /**
      * Show the form for creating a new resource.
