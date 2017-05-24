@@ -19,27 +19,39 @@
 	  	   <a href="index.php"><img src="images/logo.png" alt=""/></a>
 	  	</div>
 			<div class="consul_btn1"><a href="masuk.php">LOGIN</a></div>
-	  	  <div class="menu">
-	  	    <div class="h_menu4"><!-- start h_menu4 -->
-				<a class="toggleMenu" href="#">Menu</a><div class="nav_icon"><img src="images/nav_icon.png" alt=""/></div>
-				<ul class="nav">
-					<li><a href="index.php">Home</a></li>
-					<li><a href="registrasi.php">Registrasi</a>
-					</li>
-				</ul>
-				<script type="text/javascript" src="js/nav.js"></script>
-			</div><!-- end h_menu4 -->
-			<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
+			<div class="menu">
+				<div class="h_menu4"><!-- start h_menu4 -->
+			<a class="toggleMenu" href="#">Menu</a><div class="nav_icon"><img src="images/nav_icon.png" alt=""/></div>
+			<ul class="nav">
+				<li><a href="/">Home</a></li>
+				@if (Auth::guest())
+					<li><a href="/register">Register</a>
+				@else
+					<li class="active"><a href="/daftar-beasiswa">Daftar Beasiswa</a>
+				@endif
+				</li>
+			</ul>
+			<script type="text/javascript" src="js/nav.js"></script>
+		</div><!-- end h_menu4 -->
+		<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 			});
-		    </script>
-			<div class="active"><a href="index.php">Logut</a></div>
-            <div class="clearfix"> </div>
-	  </div>
+		});
+			</script>
+			@if (Auth::guest())
+				<div class="consul_btn"><a href="/login">LOGIN</a></div>
+			@else
+				<div class="consul_btn"><a href="{{ route('logout') }}"   onclick="event.preventDefault();
+									 document.getElementById('logout-form').submit();">LOGOUT</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+				</form></div>
+			@endif
+				<div class="clearfix"> </div>
+	</div>
 	  </div>
 	</div>
        <div class="main">
@@ -60,8 +72,8 @@
 				<input type="text" class="textbox" name="txtAsalSekolah" value="Asal Sekolah" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Asal Sekolah';}">
 				<input type="text" class="textbox" name="txtNISN" value="NISN" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'NISN';}">
 				<input type="text" class="textbox" name="txtTahunLulus" value="Tahun Lulus" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Tahun Lulus';}">
-				<input <input type="text" class="textbox" name="txtEmail" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}"> 
-				<input type="text" class="textbox" name="txtNoTelp" value="No Telp" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'No Telp';}">			 
+				<input <input type="text" class="textbox" name="txtEmail" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}">
+				<input type="text" class="textbox" name="txtNoTelp" value="No Telp" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'No Telp';}">
 				<input type="text" class="textbox" name="txtDocument" value="Document" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Document';}">
 				<input type="text" class="textbox" name="txtBuatPassword" value="Buat Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Buat Password';}">
 							 <input type="submit" value="Daftar Sekarang">

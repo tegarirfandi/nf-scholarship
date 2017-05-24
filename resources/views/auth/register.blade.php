@@ -19,34 +19,46 @@
 	  	   <a href="index.php"><img src="images/logo.png" alt=""/></a>
 	  	</div>
 			<div class="consul_btn1"><a href="masuk.php">LOGIN</a></div>
-	  	  <div class="menu">
-	  	    <div class="h_menu4"><!-- start h_menu4 -->
-				<a class="toggleMenu" href="#">Menu</a><div class="nav_icon"><img src="images/nav_icon.png" alt=""/></div>
-				<ul class="nav">
-					<li><a href="index.php">Home</a></li>
-					<li class="active"><a href="registrasi.php">Registrasi</a>
-					</li>
-				</ul>
-				<script type="text/javascript" src="js/nav.js"></script>
-			</div><!-- end h_menu4 -->
-			<script type="text/javascript">
-			jQuery(document).ready(function($) {
-				$(".scroll").click(function(event){
-					event.preventDefault();
-					$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
-				});
+			<div class="menu">
+				<div class="h_menu4"><!-- start h_menu4 -->
+			<a class="toggleMenu" href="#">Menu</a><div class="nav_icon"><img src="images/nav_icon.png" alt=""/></div>
+			<ul class="nav">
+				<li><a href="/">Home</a></li>
+				@if (Auth::guest())
+					<li><a href="/register">Register</a>
+				@else
+					<li class="active"><a href="/daftar-beasiswa">Daftar Beasiswa</a>
+				@endif
+				</li>
+			</ul>
+			<script type="text/javascript" src="js/nav.js"></script>
+		</div><!-- end h_menu4 -->
+		<script type="text/javascript">
+		jQuery(document).ready(function($) {
+			$(".scroll").click(function(event){
+				event.preventDefault();
+				$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
 			});
-		    </script>
-			<div class="consul_btn"><a href="masuk.php">LOGIN</a></div>
-            <div class="clearfix"> </div>
-	  </div>
+		});
+			</script>
+			@if (Auth::guest())
+				<div class="consul_btn"><a href="/login">LOGIN</a></div>
+			@else
+				<div class="consul_btn"><a href="{{ route('logout') }}"   onclick="event.preventDefault();
+									 document.getElementById('logout-form').submit();">LOGOUT</a>
+					<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+						{{ csrf_field() }}
+				</form></div>
+			@endif
+				<div class="clearfix"> </div>
+	</div>
 	  </div>
 	</div>
        <div class="main">
 				 <div class="approach" id="app">
 					 <div class="container">
 							<div class="gallery-head text-center">
-							 <h3>Registrasi</h3>
+							 <h3>Register</h3>
 							 <span> </span>
 						 </div>
              <div class="contact-form_grid">
