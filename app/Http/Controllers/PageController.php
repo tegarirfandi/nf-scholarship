@@ -13,8 +13,19 @@ class PageController extends Controller
      */
     public function index()
     {
-        //
+        return view('index');
     }
+
+    public function getBeasiswa()
+    {
+        return view('daftar-beasiswa');
+    }
+
+    public function postBeasiswa()
+    {
+        return view('welcome');
+    }
+
 
     /**
      * Show the form for creating a new resource.
