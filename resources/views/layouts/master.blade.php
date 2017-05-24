@@ -16,20 +16,20 @@
 	<div class="header_bottom">
 	  <div class="container">
 	  	<div class="logo">
-	  	   <a href="index.php"><img src="images/logo.png" alt=""/></a>
+	  	   <a href="/"><img src="images/logo.png" alt=""/></a>
 	  	</div>
 			<div class="consul_btn1"><a href="masuk.php">LOGIN</a></div>
 			<div class="menu">
 				<div class="h_menu4"><!-- start h_menu4 -->
 			<a class="toggleMenu" href="#">Menu</a><div class="nav_icon"><img src="images/nav_icon.png" alt=""/></div>
 			<ul class="nav">
-				<li><a href="/">Home</a></li>
+				<li class="{{ Request::is('/') ? "active" : "" }}"><a href="/">Home</a></li>
 				@if (Auth::guest())
-					<li><a href="/register">Register</a>
+					<li class="{{ Request::is('register') ? "active" : "" }}"><a href="/register">Register</a>
 				@elseif (Auth::user()->isAdmin(1))
-					<li class="active"><a href="/dashboard">Dashboard</a>
+					<li class="{{ Request::is('dashboard') ? "active" : "" }}"><a href="/dashboard">Dashboard</a>
 				@else
-					<li class="active"><a href="/daftar-beasiswa">Daftar Beasiswa</a>
+					<li class="{{ Request::is('daftar-beasiswa') ? "active" : "" }}"><a href="/daftar-beasiswa">Daftar Beasiswa</a>
 				@endif
 				</li>
 			</ul>
