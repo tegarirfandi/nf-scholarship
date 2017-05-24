@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Beasiswa;
 
 class PageController extends Controller
 {
@@ -21,9 +22,38 @@ class PageController extends Controller
         return view('daftar-beasiswa');
     }
 
-    public function postBeasiswa()
+    public function postBeasiswa(Request $request)
     {
-        return view('welcome');
+      // validasi data
+      $this->validate($request, array(
+              'nama'         => 'required|max:255',
+              'ttl'         => 'required|max:255',
+              'alamat'         => 'required',
+              'jk'         => 'required|max:255',
+              'asal'         => 'required|max:255',
+              'nisn'         => 'required|max:255',
+              'lulus'         => 'required|max:255',
+              'email'         => 'required|max:255',
+              'telp'         => 'required|max:255'
+          ));
+
+      // store in the database
+      $beasiswa         = new Beasiswa;
+      $beasiswa->nama   = $request->nama;
+      $beasiswa->ttl    = $request->ttl;
+      $beasiswa->alamat = $request->alamat;
+      $beasiswa->jk     = $request->jk;
+      $beasiswa->asal   = $request->asal;
+      $beasiswa->nisn   = $request->nisn;
+      $beasiswa->lulus  = $request->lulus;
+      $beasiswa->email  = $request->email;
+      $beasiswa->telp   = $request->telp;
+
+      $beasiswa->save();
+      // flash messages
+      $request->session()->flash('status', 'Data berhasil disimpan!');
+      // redirect ke halaman
+      return redirect()->back();
     }
 
 
